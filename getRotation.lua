@@ -5,6 +5,14 @@
  -- nextFreeSeq will be set to zero if nothing is free in the defined range --
  -----------------------------------------------------------------------------
  
+local sleep = gma.sleep;    
+local cmd   = gma.cmd;
+local input = gma.textinput;
+local grab  = gma.show.getobj;
+local name = grab.name;
+local text = gma.textinput
+local sgetvar = gma.show.getvar;
+local echo    =  gma.echo;
  
 function getRotation()
 local startSeq = 3000               -- first sequence to check
