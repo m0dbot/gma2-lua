@@ -5,21 +5,22 @@
  --  rotation of a fixture defined by uservar LS_ReadFixId                  --
  -----------------------------------------------------------------------------
  
-local input = gma.textinput;
-local grab  = gma.show.getobj;
-local getvar = gma.user.getvar;
-local setvar = gma.user.setvar;
-local gmasleep = gma.sleep (0.1);
-local echo    =  gma.echo;
-  
+
 
  
 function getRotation()
- local FixId = getvar("LS_ReadFixId"); 
+ local input = gma.textinput;
+ local grab  = gma.show.getobj;
+ local getvar = gma.user.getvar;
+ local setvar = gma.user.setvar;
+ local gmasleep = gma.sleep (0.1);
+ local echo    =  gma.echo;
+  
+ local FixId = getvar("LS_READFIXID"); 
  local rotX = gma.show.property.get(FixId,18);
  local rotY = gma.show.property.get(FixId,19);
  local rotZ = gma.show.property.get(FixId,20);
- echo('rotX : '..rotX' rotY : '..rotY' rotZ : '..rotZ);
+ echo('rotX : '..rotX..' rotY : '..rotY..' rotZ : '..rotZ);
  gmasleep();
  setvar("LS_rotX" , rotX );
 end
