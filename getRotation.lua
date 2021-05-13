@@ -1,7 +1,7 @@
  ----------------------------  getRotation  v1.0  ----------------------------
  --                   martin [at] klangbild [dot] lighting                  --
 
- --  Script to set uservars LS_rotX,LS_rotZ,LS_rotZ to the current patched  --
+ --  Script to set uservars LS_rotX,LS_rotY,LS_rotZ to the current patched  --
  --  rotation of a fixture defined by uservar LS_ReadFixId                  --
  -----------------------------------------------------------------------------
  
