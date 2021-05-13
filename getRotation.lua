@@ -10,7 +10,6 @@ function getRotation()
 
 local getvar = gma.user.getvar
 local setvar = gma.user.setvar
-local gmasleep = gma.sleep (0.1)  
 local FixId
 local rotX
 local rotY
@@ -24,7 +23,6 @@ rotX = gma.show.property.get(handle,'RotX');
 rotY = gma.show.property.get(handle,'RotY');
 rotZ = gma.show.property.get(handle,'RotZ'); 
 gma.feedback("X: " .. rotX .. " Y: " .. rotY .. " Z: " .. rotZ);
-gmasleep();
 setvar("LS_ROTX" , rotX);
 setvar("LS_ROTY" , rotY);
 setvar("LS_ROTZ" , rotZ);
