@@ -9,18 +9,24 @@
 
  
 function getRotation()
- local input = gma.textinput;
- local grab  = gma.show.getobj;
- local getvar = gma.user.getvar;
- local setvar = gma.user.setvar;
- local gmasleep = gma.sleep (0.1);
- local echo    =  gma.echo;
-  
- local FixId = getvar("LS_READFIXID"); 
- local rotX = gma.show.property.get(FixId,18);
- local rotY = gma.show.property.get(FixId,19);
- local rotZ = gma.show.property.get(FixId,20);
- echo('rotX : '..rotX..' rotY : '..rotY..' rotZ : '..rotZ);
- gmasleep();
- setvar("LS_rotX" , rotX );
+gma.feedback("1");
+local grab  = gma.show.getobj
+local getvar = gma.user.getvar
+local setvar = gma.user.setvar
+local gmasleep = gma.sleep (0.1)  
+local FixId = 0
+local rotX = 1000
+local rotY = 1000
+local rotZ = 1000 
+FixId = getvar("LS_READFIXID")
+handle = gma.show.getobj.handle('fixture 'FixId);
+rotX = gma.show.property.get(handle,18);
+rotY = gma.show.property.get(handle,19);
+rotZ = gma.show.property.get(handle,20); 
+gma.feedback("rotX : " .. rotX .. " rotY : " .. rotY .. " rotZ : " .. rotZ);
+gmasleep();
+setvar("LS_ROTX" , rotX);
+setvar("LS_ROTY" , rotY);
+setvar("LS_ROTZ" , rotZ);
 end
+return getRotation;
