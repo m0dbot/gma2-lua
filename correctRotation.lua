@@ -1,15 +1,15 @@
  -------------------------  correctRotation  v0.42  --------------------------
  --                   martin [at] klangbild [dot] lighting                  --
-
  -----------------------------------------------------------------------------
+ --  corrects the rotation of your fixtures by LongName and given offsets   --
  -----------------------------------------------------------------------------
  
 
 function correctRotation()
 
 
-local FirstFixture = 1               -- first fixture to modify
-local LastFixture = 99                 -- last fixture to mofify
+local FirstFixture =   1                 -- first fixture to modify
+local LastFixture  = 199                 -- last fixture to mofify
 
 
 local cmd    =  gma.cmd 
@@ -38,19 +38,22 @@ found = 1
 
 if string.match(fixName, "Dimmer 00") then
    modRotX = 0
-   modRotY = -90
+   modRotY = 0
    modRotZ = 0
-  
-elseif string.match(fixName, "Pointe Mode 3") then
+
+--copy these lines and edit for your needs--   
+elseif string.match(fixName, "Pointe Mode 3") then     
    modRotX = 0
-   modRotY = 45
+   modRotY = -45
    modRotZ = 0  
   
+--copy these lines and edit for your needs--   
 elseif string.match(fixName, "GDID0001") then
    modRotX = 0
    modRotY = 0
    modRotZ = 180  
   
+--copy these lines and edit for your needs--   
 elseif string.match(fixName, "GDID0002") then
    modRotX = 90
    modRotY = -45
