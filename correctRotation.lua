@@ -1,4 +1,4 @@
- -------------------------  correctRotation  v1.0  --------------------------
+ -------------------------  correctRotation  v1.1  --------------------------
  --                   martin [at] klangbild [dot] lighting                  --
 
  -----------------------------------------------------------------------------
@@ -33,25 +33,25 @@ sleep(0.1)
 local fixName = gma.show.property.get(handle,3)
 gma.feedback('FixtureType is ' .. fixName)
 found = 1
-if string.match(fixName, "Dimmer 00") then
+if string.match(fixName, "GD0001") then
    modRotX = 0
    modRotY = -90
    modRotZ = 0
    
   --copy these lines and change for your needs--
-elseif string.match(fixName, "Pointe Mode 3") then
+elseif string.match(fixName, "GD0002") then
    modRotX = 0
    modRotY = 45
    modRotZ = 0  
   
   --copy these lines and change for your needs--
-elseif string.match(fixName, "GDID0001") then
+elseif string.match(fixName, "GD0003") then
    modRotX = 0
    modRotY = 0
    modRotZ = 180  
   
   --copy these lines and change for your needs--
-elseif string.match(fixName, "GDID0002") then
+elseif string.match(fixName, "GD0004") then
    modRotX = 90
    modRotY = -45
    modRotZ = 0
@@ -97,9 +97,13 @@ if found == 1 then
   end    
   
   gma.feedback("cor X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)
-    cmd('Fixture ' .. fixId)
+  cmd('Clear All')
+  sleep(0.1)
+  cmd('Fixture ' .. fixId)
   sleep(0.1)
   cmd('Rotate3D At ' .. newRotX .. ' ' .. newRotY .. ' ' .. newRotZ)
+  sleep(0.1)
+  cmd('Clear All')
   sleep(0.1)
 
 end
