@@ -1,4 +1,4 @@
- -------------------------  correctRotation  v1.1  --------------------------
+ -------------------------  correctRotation  v1.2  --------------------------
  --                   martin [at] klangbild [dot] lighting                  --
 
  -----------------------------------------------------------------------------
@@ -7,8 +7,9 @@
 
 function correctRotation()
 
+local FirstFixture = 001                 -- first fixture to modify
+local LastFixture  = 199                 -- last fixture to mofify
 
-local getvar = gma.user.getvar -- gma.user.setvar or gma.system.getvar
 local cmd    =  gma.cmd 
 local sleep   =  gma.sleep
 local fixId
@@ -23,8 +24,8 @@ local modRotY
 local modRotZ
 local found
 
-fixId = getvar("LS_READFIXID")
 
+for fixId = FirstFixture, LastFixture do
 gma.feedback("reading fixture " .. fixId)
 if(gma.show.getobj.handle("Fixture " .. fixId .. ".1"))then
 sleep(0.1)
@@ -37,7 +38,7 @@ if string.match(fixName, "GD0001") then
    modRotX = 0
    modRotY = -90
    modRotZ = 0
-   
+     
   --copy these lines and change for your needs--
 elseif string.match(fixName, "GD0002") then
    modRotX = 0
@@ -62,7 +63,6 @@ else
   gma.feedback("NO MATCH")
 end
 if found == 1 then
-
   
   sleep(0.1)
   gma.feedback("MATCH")  
@@ -110,9 +110,9 @@ end
 
 else
 gma.feedback("no fixture")
-
 end
 
+end
 
 end
 return correctRotation;
