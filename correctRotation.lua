@@ -1,14 +1,14 @@
  -------------------------  correctRotation  v0.42  --------------------------
  --                   martin [at] klangbild [dot] lighting                  --
+
  -----------------------------------------------------------------------------
- --  corrects the rotation of your fixtures by LongName and given offsets   --
  -----------------------------------------------------------------------------
  
 
 function correctRotation()
 
 
-local FirstFixture =   1                 -- first fixture to modify
+local FirstFixture = 001                 -- first fixture to modify
 local LastFixture  = 199                 -- last fixture to mofify
 
 
@@ -31,29 +31,30 @@ for fixId = FirstFixture, LastFixture do
 
 
 gma.feedback("reading fixture " .. fixId)
+
+if(gma.show.getobj.handle("Fixture " .. fixId .. ".1"))then
+
 local handle  =  gma.show.getobj.handle("Fixture " .. fixId .. ".1")
+
 local fixName = gma.show.property.get(handle,3)
 gma.feedback('FixtureType is ' .. fixName)
 found = 1
 
 if string.match(fixName, "Dimmer 00") then
    modRotX = 0
-   modRotY = 0
+   modRotY = -90
    modRotZ = 0
-
---copy these lines and edit for your needs--   
-elseif string.match(fixName, "Pointe Mode 3") then     
+  
+elseif string.match(fixName, "Pointe Mode 3") then
    modRotX = 0
-   modRotY = -45
+   modRotY = 45
    modRotZ = 0  
   
---copy these lines and edit for your needs--   
 elseif string.match(fixName, "GDID0001") then
    modRotX = 0
    modRotY = 0
    modRotZ = 180  
   
---copy these lines and edit for your needs--   
 elseif string.match(fixName, "GDID0002") then
    modRotX = 90
    modRotY = -45
@@ -107,6 +108,8 @@ if found == 1 then
   sleep(0.1)
   cmd('Rotate3D At ' .. newRotX .. ' ' .. newRotY .. ' ' .. newRotZ)
   sleep(0.1)
+
+end
 
 end
 
