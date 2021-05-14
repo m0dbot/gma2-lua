@@ -17,7 +17,7 @@ local rotZ
 
 FixId = getvar("LS_READFIXID");
 gma.feedback("reading fixture " .. FixId);
-local handle  =  gma.show.getobj.handle("Fixture " .. FixId);
+local handle  =  gma.show.getobj.handle("Fixture " .. FixId ..".1");
 gma.feedback('FixtureType is '.. gma.show.property.get(handle,3));
 rotX = gma.show.property.get(handle,'RotX');
 rotY = gma.show.property.get(handle,'RotY');
