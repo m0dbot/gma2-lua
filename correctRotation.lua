@@ -1,4 +1,4 @@
- -------------------------  correctRotation  v0.42  --------------------------
+ -------------------------  correctRotation  v1.0  --------------------------
  --                   martin [at] klangbild [dot] lighting                  --
 
  -----------------------------------------------------------------------------
@@ -8,10 +8,7 @@
 function correctRotation()
 
 
-local FirstFixture = 001                 -- first fixture to modify
-local LastFixture  = 199                 -- last fixture to mofify
-
-
+local getvar = gma.user.getvar -- gma.user.setvar or gma.system.getvar
 local cmd    =  gma.cmd 
 local sleep   =  gma.sleep
 local fixId
@@ -26,12 +23,13 @@ local modRotY
 local modRotZ
 local found
 
-for fixId = FirstFixture, LastFixture do
+fixId = getvar("LS_READFIXID")
 
 gma.feedback("reading fixture " .. fixId)
 if(gma.show.getobj.handle("Fixture " .. fixId .. ".1"))then
-
+sleep(0.1)
 local handle  =  gma.show.getobj.handle("Fixture " .. fixId .. ".1")
+sleep(0.1)
 local fixName = gma.show.property.get(handle,3)
 gma.feedback('FixtureType is ' .. fixName)
 found = 1
@@ -46,11 +44,13 @@ elseif string.match(fixName, "Pointe Mode 3") then
    modRotY = 45
    modRotZ = 0  
   
+  --copy these lines and change for your needs--
 elseif string.match(fixName, "GDID0001") then
    modRotX = 0
    modRotY = 0
    modRotZ = 180  
   
+  --copy these lines and change for your needs--
 elseif string.match(fixName, "GDID0002") then
    modRotX = 90
    modRotY = -45
@@ -63,6 +63,8 @@ else
 end
 if found == 1 then
 
+  
+  sleep(0.1)
   gma.feedback("MATCH")  
   sleep(0.1)
   rotX = gma.show.property.get(handle,'RotX')
@@ -95,16 +97,18 @@ if found == 1 then
   end    
   
   gma.feedback("cor X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)
-  cmd('Fixture ' .. fixId)
+    cmd('Fixture ' .. fixId)
   sleep(0.1)
   cmd('Rotate3D At ' .. newRotX .. ' ' .. newRotY .. ' ' .. newRotZ)
   sleep(0.1)
 
 end
 
-end
+else
+gma.feedback("no fixture")
 
 end
+
 
 end
 return correctRotation;
