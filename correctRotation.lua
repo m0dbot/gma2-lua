@@ -1,4 +1,4 @@
- --------------------------  correctRotation  v0.1  --------------------------
+ --------------------------  correctRotation  v0.2  --------------------------
  --                   martin [at] klangbild [dot] lighting                  --
 
  -----------------------------------------------------------------------------
@@ -19,7 +19,10 @@ local rotZ
 local newRotX
 local newRotY
 local newRotZ
-local found = 1
+local nodRotX
+local modRotY
+local modRotZ
+local found
 
 FixId = getvar("LS_READFIXID")
 
@@ -27,27 +30,28 @@ FixId = getvar("LS_READFIXID")
 gma.feedback("reading fixture " .. FixId)
 local handle  =  gma.show.getobj.handle("Fixture " .. FixId .. ".1")
 local fixName = gma.show.property.get(handle,3)
-gma.feedback('FixtureType is '.. fixName)
+gma.feedback('FixtureType is ' .. fixName)
+found = 1
 
 if string.match(str, "Pointe Mode 3") then
-  local modRotX = 0
-  local modRotY = -90
-  local modRotZ = 180
+   modRotX = 0
+   modRotY = 90
+   modRotZ = 180
   
 elseif string.match(str, "Dimmer 00") then
-  local modRotX = 0
-  local modRotY = 0
-  local modRotZ = 90  
+   modRotX = 0
+   modRotY = 0
+   modRotZ = 90  
   
 elseif string.match(str, "GDID0001") then
-  local modRotX = 0
-  local modRotY = 0
-  local modRotZ = 180  
+   modRotX = 0
+   modRotY = 0
+   modRotZ = 180  
   
 elseif string.match(str, "GDID0002") then
-  local modRotX = -90
-  local modRotY = 0
-  local modRotZ = 0
+   modRotX = 90
+   modRotY = 0
+   modRotZ = 0
 
 
 else
