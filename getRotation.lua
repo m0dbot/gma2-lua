@@ -18,17 +18,17 @@ local rotY
 local rotZ
 
 FixId = getvar("LS_READFIXID");
-gma.feedback("reading fixture " .. FixId);
-local handle  =  gma.show.getobj.handle("Fixture " .. FixId .. ".1");
-local fixName = gma.show.property.get(handle,3);
-gma.feedback('FixtureType is '.. fixName);
-rotX = gma.show.property.get(handle,'RotX');
-rotY = gma.show.property.get(handle,'RotY');
-rotZ = gma.show.property.get(handle,'RotZ'); 
-gma.feedback("X: " .. rotX .. " Y: " .. rotY .. " Z: " .. rotZ);
-setvar("LS_ROTX" , rotX);
-setvar("LS_ROTY" , rotY);
-setvar("LS_ROTZ" , rotZ);
-setvar("LS_FIXNAME" , fixName);
+gma.feedback("reading fixture " .. FixId)
+local handle  =  gma.show.getobj.handle("Fixture " .. FixId .. ".1")
+local fixName = gma.show.property.get(handle,3)
+gma.feedback('FixtureType is '.. fixName)
+rotX = gma.show.property.get(handle,'RotX')
+rotY = gma.show.property.get(handle,'RotY')
+rotZ = gma.show.property.get(handle,'RotZ') 
+gma.feedback("X: " .. rotX .. " Y: " .. rotY .. " Z: " .. rotZ)
+setvar("LS_ROTX" , rotX)
+setvar("LS_ROTY" , rotY)
+setvar("LS_ROTZ" , rotZ)
+setvar("LS_FIXNAME" , fixName)
 end
-return getRotation;
+return getRotation
