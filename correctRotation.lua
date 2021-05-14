@@ -26,25 +26,21 @@ local modRotY
 local modRotZ
 local found
 
-
 for fixId = FirstFixture, LastFixture do
 
-
 gma.feedback("reading fixture " .. fixId)
-
 if(gma.show.getobj.handle("Fixture " .. fixId .. ".1"))then
 
 local handle  =  gma.show.getobj.handle("Fixture " .. fixId .. ".1")
-
 local fixName = gma.show.property.get(handle,3)
 gma.feedback('FixtureType is ' .. fixName)
 found = 1
-
 if string.match(fixName, "Dimmer 00") then
    modRotX = 0
    modRotY = -90
    modRotZ = 0
-  
+   
+  --copy these lines and change for your needs--
 elseif string.match(fixName, "Pointe Mode 3") then
    modRotX = 0
    modRotY = 45
@@ -65,23 +61,20 @@ else
   found = 0
   gma.feedback("NO MATCH")
 end
-
 if found == 1 then
 
-  gma.feedback("MATCH")
-
+  gma.feedback("MATCH")  
+  sleep(0.1)
   rotX = gma.show.property.get(handle,'RotX')
+  sleep(0.1)
   rotY = gma.show.property.get(handle,'RotY')
-  rotZ = gma.show.property.get(handle,'RotZ')
-  
-  
-  gma.feedback("X: " .. rotX .. " Y: " .. rotY .. " Z: " .. rotZ)
-
+  sleep(0.1)
+  rotZ = gma.show.property.get(handle,'RotZ')  
+  sleep(0.1)
+  gma.feedback("old X: " .. rotX .. " Y: " .. rotY .. " Z: " .. rotZ)
   newRotX = rotX + modRotX
   newRotY = rotY + modRotY
   newRotZ = rotZ + modRotZ
-  
-  
   gma.feedback("mod X: " .. modRotX .. " Y: " .. modRotY .. " Z: " .. modRotZ)
   gma.feedback("new X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)
   
@@ -101,9 +94,7 @@ if found == 1 then
     newRotZ = newRotZ + 360
   end    
   
-
   gma.feedback("cor X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)
-
   cmd('Fixture ' .. fixId)
   sleep(0.1)
   cmd('Rotate3D At ' .. newRotX .. ' ' .. newRotY .. ' ' .. newRotZ)
