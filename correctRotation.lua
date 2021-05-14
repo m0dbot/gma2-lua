@@ -1,4 +1,4 @@
- --------------------------  correctRotation  v0.2  --------------------------
+ --------------------------  correctRotation  v0.3  --------------------------
  --                   martin [at] klangbild [dot] lighting                  --
 
  -----------------------------------------------------------------------------
@@ -33,22 +33,22 @@ local fixName = gma.show.property.get(handle,3)
 gma.feedback('FixtureType is ' .. fixName)
 found = 1
 
-if string.match(str, "Pointe Mode 3") then
+if string.match(fixName, "Pointe Mode 3") then
    modRotX = 0
    modRotY = 90
    modRotZ = 180
   
-elseif string.match(str, "Dimmer 00") then
+elseif string.match(fixName, "Dimmer 00") then
    modRotX = 0
    modRotY = 0
    modRotZ = 90  
   
-elseif string.match(str, "GDID0001") then
+elseif string.match(fixName, "GDID0001") then
    modRotX = 0
    modRotY = 0
    modRotZ = 180  
   
-elseif string.match(str, "GDID0002") then
+elseif string.match(fixName, "GDID0002") then
    modRotX = 90
    modRotY = 0
    modRotZ = 0
@@ -70,11 +70,27 @@ if found == 1 then
   newRotX = rotX + modRotX
   newRotY = rotY + modRotY
   newRotZ = rotZ + modRotZ
+  
+  if newRotX > 180 then
+    newRotX = newRotX - 360
+  elseif newRotX < -180 then
+    newRotX = newRotX + 360
+  end  
+  if newRotY > 180 then
+    newRotY = newRotY - 360
+  elseif newRotY < -180 then
+    newRotY = newRotY + 360
+  end  
+  if newRotZ > 180 then
+    newRotZ = newRotZ - 360
+  elseif newRotZ < -180 then
+    newRotZ = newRotZ + 360
+  end	
 
   cmd('Fixture ' .. FixId)
-  gma.sleep 0.01
+  --gma.sleep 0.01
   cmd('Rotate3D At '..newRotZ..' '..newRotZ..' '..newRotZ)
-  gma.sleep 0.01
+  --gma.sleep 0.01
 
 end
 
