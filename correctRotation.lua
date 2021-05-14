@@ -7,10 +7,11 @@
 
 function correctRotation()
 
-local startFix = 1               -- first fixture to modify
-local endFix = 99                 -- last fixture to mofify
 
-local getvar = gma.user.getvar    -- gma.user.setvar or gma.system.getvar
+local FirstFixture = 1               -- first fixture to modify
+local LastFixture = 99                 -- last fixture to mofify
+
+
 local cmd    =  gma.cmd 
 local sleep   =  gma.sleep
 local fixId
@@ -26,7 +27,7 @@ local modRotZ
 local found
 
 
-for fixId = startFix, endFix do
+for fixId = FirstFixture, LastFixture do
 
 
 gma.feedback("reading fixture " .. fixId)
@@ -35,15 +36,15 @@ local fixName = gma.show.property.get(handle,3)
 gma.feedback('FixtureType is ' .. fixName)
 found = 1
 
-if string.match(fixName, "Pointe Mode 3") then
+if string.match(fixName, "Dimmer 00") then
    modRotX = 0
    modRotY = -90
-   modRotZ = 1
+   modRotZ = 0
   
-elseif string.match(fixName, "Dimmer 00") then
+elseif string.match(fixName, "Pointe Mode 3") then
    modRotX = 0
-   modRotY = 0
-   modRotZ = 90  
+   modRotY = 45
+   modRotZ = 0  
   
 elseif string.match(fixName, "GDID0001") then
    modRotX = 0
@@ -52,7 +53,7 @@ elseif string.match(fixName, "GDID0001") then
   
 elseif string.match(fixName, "GDID0002") then
    modRotX = 90
-   modRotY = 0
+   modRotY = -45
    modRotZ = 0
 
 
