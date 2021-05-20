@@ -1,4 +1,4 @@
- -------------------------  correctRotation  v1.2  --------------------------
+ -------------------------  correctRotation  v1.3  --------------------------
  --                   martin [at] klangbild [dot] lighting                  --
 
  -----------------------------------------------------------------------------
@@ -66,46 +66,89 @@ if found == 1 then
   
   sleep(0.1)
   gma.feedback("MATCH")  
-  sleep(0.1)
+    
+  sleep(0.02)
   rotX = gma.show.property.get(handle,'RotX')
-  sleep(0.1)
+  sleep(0.02)
   rotY = gma.show.property.get(handle,'RotY')
-  sleep(0.1)
+  sleep(0.02)
   rotZ = gma.show.property.get(handle,'RotZ')  
-  sleep(0.1)
+  sleep(0.02)
   gma.feedback("old X: " .. rotX .. " Y: " .. rotY .. " Z: " .. rotZ)
-  newRotX = rotX + modRotX
-  newRotY = rotY + modRotY
-  newRotZ = rotZ + modRotZ
+  newRotX = rotX + modRotX    
+  newRotY = rotY
+  newRotZ = rotZ
   gma.feedback("mod X: " .. modRotX .. " Y: " .. modRotY .. " Z: " .. modRotZ)
   gma.feedback("new X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)
-  
   if newRotX > 180 then
     newRotX = newRotX - 360
   elseif newRotX < -180 then
     newRotX = newRotX + 360
-  end  
+  end    
+  gma.feedback("cor X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)
+  cmd('Clear All')
+  sleep(0.02)
+  cmd('Fixture ' .. fixId)
+  sleep(0.02)
+  cmd('Rotate3D At ' .. newRotX .. ' ' .. newRotY .. ' ' .. newRotZ)
+  sleep(0.02)
+  cmd('Clear All')
+  sleep(0.1)    
+        
+  rotX = gma.show.property.get(handle,'RotX')
+  sleep(0.02)
+  rotY = gma.show.property.get(handle,'RotY')
+  sleep(0.02)
+  rotZ = gma.show.property.get(handle,'RotZ')  
+  sleep(0.02)
+  gma.feedback("old X: " .. rotX .. " Y: " .. rotY .. " Z: " .. rotZ)
+  newRotX = rotX  
+  newRotY = rotY + modRotY 
+  newRotZ = rotZ
+  gma.feedback("mod X: " .. modRotX .. " Y: " .. modRotY .. " Z: " .. modRotZ)
+  gma.feedback("new X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ) 
   if newRotY > 180 then
     newRotY = newRotY - 360
   elseif newRotY < -180 then
     newRotY = newRotY + 360
   end  
+  gma.feedback("cor X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)
+  cmd('Clear All')
+  sleep(0.02)
+  cmd('Fixture ' .. fixId)
+  sleep(0.02)
+  cmd('Rotate3D At ' .. newRotX .. ' ' .. newRotY .. ' ' .. newRotZ)
+  sleep(0.02)
+  cmd('Clear All')
+  sleep(0.1)    
+    
+  rotX = gma.show.property.get(handle,'RotX')
+  sleep(0.02)
+  rotY = gma.show.property.get(handle,'RotY')
+  sleep(0.02)
+  rotZ = gma.show.property.get(handle,'RotZ')  
+  sleep(0.02)
+  gma.feedback("old X: " .. rotX .. " Y: " .. rotY .. " Z: " .. rotZ)
+  newRotX = rotX  
+  newRotY = rotY
+  newRotZ = rotZ + modRotZ
+  gma.feedback("mod X: " .. modRotX .. " Y: " .. modRotY .. " Z: " .. modRotZ)
+  gma.feedback("new X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)       
   if newRotZ > 180 then
     newRotZ = newRotZ - 360
   elseif newRotZ < -180 then
     newRotZ = newRotZ + 360
   end    
-  
   gma.feedback("cor X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)
   cmd('Clear All')
-  sleep(0.1)
+  sleep(0.02)
   cmd('Fixture ' .. fixId)
-  sleep(0.1)
+  sleep(0.02)
   cmd('Rotate3D At ' .. newRotX .. ' ' .. newRotY .. ' ' .. newRotZ)
-  sleep(0.1)
+  sleep(0.02)
   cmd('Clear All')
-  sleep(0.1)
-
+  sleep(0.1)    
+   
 end
 
 else
