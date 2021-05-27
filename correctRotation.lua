@@ -1,4 +1,4 @@
- -------------------------  correctRotation  v1.3  --------------------------
+ -------------------------  correctRotation  v1.4  --------------------------
  --                   martin [at] klangbild [dot] lighting                  --
 
  -----------------------------------------------------------------------------
@@ -64,91 +64,64 @@ else
 end
 if found == 1 then
   
-  sleep(0.1)
+  sleep(0.05)
   gma.feedback("MATCH")  
     
-  sleep(0.02)
+  sleep(0.05)
   rotX = gma.show.property.get(handle,'RotX')
-  sleep(0.02)
-  rotY = gma.show.property.get(handle,'RotY')
-  sleep(0.02)
-  rotZ = gma.show.property.get(handle,'RotZ')  
-  sleep(0.02)
-  gma.feedback("old X: " .. rotX .. " Y: " .. rotY .. " Z: " .. rotZ)
+  sleep(0.05)
+  gma.feedback("old X: " .. rotX)
   newRotX = rotX + modRotX    
-  newRotY = rotY
-  newRotZ = rotZ
-  gma.feedback("mod X: " .. modRotX .. " Y: " .. modRotY .. " Z: " .. modRotZ)
-  gma.feedback("new X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)
+  gma.feedback("mod X: " .. modRotX)
+  gma.feedback("new X: " .. newRotX)
   if newRotX > 180 then
     newRotX = newRotX - 360
   elseif newRotX < -180 then
     newRotX = newRotX + 360
   end    
-  gma.feedback("cor X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)
+  gma.feedback("cor X: " .. newRotX)
   cmd('Clear All')
-  sleep(0.02)
-  cmd('Fixture ' .. fixId)
-  sleep(0.02)
-  cmd('Rotate3D At ' .. newRotX .. ' ' .. newRotY .. ' ' .. newRotZ)
-  sleep(0.02)
+  sleep(0.05)
+  cmd('Assign Fixture '..fixId..'.1 /RotX='..newRotX)
+  sleep(0.05)
   cmd('Clear All')
-  sleep(0.1)    
+  sleep(0.05)    
         
-  rotX = gma.show.property.get(handle,'RotX')
-  sleep(0.02)
   rotY = gma.show.property.get(handle,'RotY')
-  sleep(0.02)
-  rotZ = gma.show.property.get(handle,'RotZ')  
-  sleep(0.02)
-  gma.feedback("old X: " .. rotX .. " Y: " .. rotY .. " Z: " .. rotZ)
-  newRotX = rotX  
-  newRotY = rotY + modRotY 
-  newRotZ = rotZ
-  gma.feedback("mod X: " .. modRotX .. " Y: " .. modRotY .. " Z: " .. modRotZ)
-  gma.feedback("new X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ) 
+  sleep(0.05)
+  gma.feedback("old Y: " .. rotY)
+  newRotY = rotY + modRotY    
+  gma.feedback("mod Y: " .. modRotY)
+  gma.feedback("new Y: " .. newRotY)
   if newRotY > 180 then
     newRotY = newRotY - 360
   elseif newRotY < -180 then
     newRotY = newRotY + 360
-  end  
-  gma.feedback("cor X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)
+  end    
+  gma.feedback("cor Y: " .. newRotY)
+  sleep(0.05)
+  cmd('Assign Fixture '..fixId..'.1 /RotY='..newRotY)
+  sleep(0.05)
   cmd('Clear All')
-  sleep(0.02)
-  cmd('Fixture ' .. fixId)
-  sleep(0.02)
-  cmd('Rotate3D At ' .. newRotX .. ' ' .. newRotY .. ' ' .. newRotZ)
-  sleep(0.02)
-  cmd('Clear All')
-  sleep(0.1)    
-    
-  rotX = gma.show.property.get(handle,'RotX')
-  sleep(0.02)
-  rotY = gma.show.property.get(handle,'RotY')
-  sleep(0.02)
-  rotZ = gma.show.property.get(handle,'RotZ')  
-  sleep(0.02)
-  gma.feedback("old X: " .. rotX .. " Y: " .. rotY .. " Z: " .. rotZ)
-  newRotX = rotX  
-  newRotY = rotY
-  newRotZ = rotZ + modRotZ
-  gma.feedback("mod X: " .. modRotX .. " Y: " .. modRotY .. " Z: " .. modRotZ)
-  gma.feedback("new X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)       
+  sleep(0.05)    
+  
+  rotZ = gma.show.property.get(handle,'RotZ')
+  sleep(0.05)
+  gma.feedback("old Z: " .. rotZ)
+  newRotZ = rotZ + modRotZ    
+  gma.feedback("mod Z: " .. modRotZ)
+  gma.feedback("new Z: " .. newRotZ)
   if newRotZ > 180 then
     newRotZ = newRotZ - 360
   elseif newRotZ < -180 then
     newRotZ = newRotZ + 360
   end    
-  gma.feedback("cor X: " .. newRotX .. " Y: " .. newRotY .. " Z: " .. newRotZ)
+  gma.feedback("cor Z: " .. newRotZ)
+  sleep(0.05)
+  cmd('Assign Fixture '..fixId..'.1 /RotZ='..newRotZ)
+  sleep(0.05)
   cmd('Clear All')
-  sleep(0.02)
-  cmd('Fixture ' .. fixId)
-  sleep(0.02)
-  cmd('Rotate3D At ' .. newRotX .. ' ' .. newRotY .. ' ' .. newRotZ)
-  sleep(0.02)
-  cmd('Clear All')
-  sleep(0.1)    
-   
+  sleep(0.05)    
 end
 
 else
