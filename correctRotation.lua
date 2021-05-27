@@ -66,7 +66,7 @@ if found == 1 then
   sleep(0.1)
   cmd('Fixture ' .. fixId)
   sleep(0.1)
-  cmd('Rotate3D At ' .. modRotX .. ' ' .. modRotY .. ' ' .. modRotZ .. ' /relative)
+  cmd('Rotate3D At ' .. modRotX .. ' ' .. modRotY .. ' ' .. modRotZ .. ' /relative')
   sleep(0.1)
   cmd('Clear All')
   sleep(0.1)    
